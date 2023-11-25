@@ -64,4 +64,28 @@ UNION
 SELECT city from payments
 ```
 
+## 4. How to use `SELECT` inside the `INSERT` statement
+```sql
+INSERT INTO users(name, age, email) SELECT name, age, email from users WHERE age = 25;
+```
+## 5. SQL `CASE` statement
+[1-5] Create a column depending on other column value under some conditions
+```sql
+SELECT id, age,
+CASE
+  WHEN age > 30 THEN 'The age is greater than 30'
+  WHEN age = 30 THEN 'The age is 30'
+  ELSE 'The age is under 30'
+END AS ageText
+FROM users;
+```
+[2-5] Order Using `CASE` Statement
+```sql
+SELECT CustomerName, City, Country
+FROM Customers
+ORDER BY (CASE
+    WHEN City IS NULL THEN Country
+    ELSE City
+END);
+```
 
