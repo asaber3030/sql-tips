@@ -129,3 +129,37 @@ DELIMITER ;
 -- Calling the procedure:
 CALL procedure_name(10);
 ```
+
+## 7. Constraints
+- **NOT NULL** -> Ensures that a column cannot have a NULL value
+- **UNIQUE** Ensures that all values in a column are different
+- **PRIMARY KEY** -> A combination of a `NOT NULL` and `UNIQUE`. Uniquely identifies each row in a table
+- **FOREIGN KEY** -> Prevents actions that would destroy links between tables
+- **CHECK** -> Ensures that the values in a column satisfy a specific condition
+- **DEFAULT** -> Sets a default value for a column if no value is specified
+- **CREATE INDEX** -> Used to create and retrieve data from the database very quickly
+
+## 8. Creating Foreign keys
+
+[1-8] While creating the table
+```sql
+CREATE TABLE orders (
+    orderID int NOT NULL,
+    orderNumber int NOT NULL,
+    userID int,
+    PRIMARY KEY (orderID),
+    FOREIGN KEY (userID) REFERENCES users(id)
+);
+```
+
+[2-8] Using `ALTER` to add Foreign keys
+```sql
+ALTER TABLE orders ADD CONSTRAINT con_name FOREIGN KEY (userID) REFERENCES users(id);
+--- OR ---
+ALTER TABLE orders ADD FOREIGN KEY (userID) REFERENCES users(id);
+```
+
+[3-8] Drop foreign key
+```sql
+ALTER TABLE orders DROP FOREIGN KEY con_name;
+```
